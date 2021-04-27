@@ -35,7 +35,8 @@ user_repo = UserRepository.new(rom)
 task_repo = TaskRepository.new(rom)
 
 user = user_repo.create(name: "Jane", email: "jane@doe.org")
-task = task_repo.create(title: "Jane Task", user_id: user.id)
+task_repo.create(title: "Jane Task", user_id: user.id)
+task_repo.create(title: "Fake Task", user_id: user.id)
 
-p user_repo.with_tasks.one.class
-# => ROM::Struct::User
+p task_repo.by_title("Fake Task")
+p user_repo.all_alphabetical_by_name_with_tasks(name: "Jane", task_title: "Fake Task")

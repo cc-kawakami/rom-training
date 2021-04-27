@@ -10,4 +10,8 @@ class Tasks < ROM::Relation[:sql]
     attribute :title, Types::String
     attribute :user_id, Types::ForeignKey(:user)
   end
+
+  def by_title(title)
+    where(title: title)
+  end
 end

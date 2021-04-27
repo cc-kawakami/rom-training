@@ -10,4 +10,12 @@ class Users < ROM::Relation[:sql]
     attribute :name, Types::String
     attribute :email, Types::String
   end
+
+  def alphabetical
+    order { name.asc }
+  end
+
+  def by_name(name)
+    where(name: name)
+  end
 end
